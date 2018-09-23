@@ -7,12 +7,14 @@ package com.financesystem.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 /**
  * Spring Bean Configuration - Programmatic Approach
@@ -20,7 +22,7 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration // Replacement to Spring Configuration File
 @EnableWebMvc // Replacement to <mvc:annotation-config/>
-@ComponentScan(basePackages = { "com.financesystem.controllers","com.financesystem.api" }) 
+@ComponentScan(basePackages = { "com.financesystem.controllers", "com.financesystem.api" })
 // Replacement to <context:component-scan>
 public class UserFinancialSystemBeanConfigurator extends WebMvcConfigurerAdapter {
 	@Bean
@@ -30,6 +32,13 @@ public class UserFinancialSystemBeanConfigurator extends WebMvcConfigurerAdapter
 		viewResolver.setPrefix(ApplicationConstants.VIEW_LOCATION_PREFIX);
 		viewResolver.setSuffix(ApplicationConstants.VIEW_SUFFIX);
 		return viewResolver;
+	}
+
+	@Bean
+	public View jsonTemplate() {
+		MappingJackson2JsonView view = new MappingJackson2JsonView();
+		view.setPrettyPrint(true);
+		return view;
 	}
 
 	@Override

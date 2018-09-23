@@ -41,6 +41,10 @@ public class PersonalIdentityDocs implements Serializable {
 	@SequenceGenerator(allocationSize = 50, name = "SEQ_PI_DOCS", sequenceName = "SEQ_PI_DOCS")
 	@Column(name = "SEQ_PI_DOCS")
 	private String seqPiDOC;
+	@Column(name="USER_NAME")
+	private String userName;
+	@Column(name="MOBILE_NUMBER")
+	private String mobileNumber;
 	@Column(name = "ACTIVE_STATUS", columnDefinition = "DEFAULTS TO 'Y' IN DB")
 	private String activeStatus;
 	@Column(name = "PAN_ID")
@@ -103,20 +107,40 @@ public class PersonalIdentityDocs implements Serializable {
 	private String createdDateTime;
 	@Column(name = "MODIFIED_DATETIME")
 	private String modifiedDateTime;
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 
-	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "USER_NAME"), @JoinColumn(name = "MOBILE_NUMBER") })
-	private UserCredentials userCredentials;
-
-	@OneToOne
-	@JoinColumns({ @JoinColumn(name = "V_REGISTRATION_NUM") })
-	private VehicleDetails vehicleDetails;
 
 	public String getSeqPiDOC() {
 		return seqPiDOC;
 	}
 
+	/**
+	 * @return the userName
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	 * @param userName the userName to set
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	/**
+	 * @return the mobileNumber
+	 */
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	/**
+	 * @param mobileNumber the mobileNumber to set
+	 */
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+	
 	public void setSeqPiDOC(final String seqPiDOC) {
 		this.seqPiDOC = seqPiDOC;
 	}
@@ -369,43 +393,228 @@ public class PersonalIdentityDocs implements Serializable {
 		this.firstIssueDate = firstIssueDate;
 	}
 
-	public UserCredentials getUserCredentials() {
-		return userCredentials;
-	}
+	
 
-	public void setUserCredentials(UserCredentials userCredentials) {
-		this.userCredentials = userCredentials;
-	}
-
-	public VehicleDetails getVehicleDetails() {
-		return vehicleDetails;
-	}
-
-	public void setVehicleDetails(VehicleDetails vehicleDetails) {
-		this.vehicleDetails = vehicleDetails;
-	}
-
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((seqPiDOC == null) ? 0 : seqPiDOC.hashCode());
+		result = prime * result + ((aadharId == null) ? 0 : aadharId.hashCode());
+		result = prime * result + ((activeStatus == null) ? 0 : activeStatus.hashCode());
+		result = prime * result + ((bloodGroup == null) ? 0 : bloodGroup.hashCode());
+		result = prime * result + ((createdDateTime == null) ? 0 : createdDateTime.hashCode());
+		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
+		result = prime * result + ((dlId == null) ? 0 : dlId.hashCode());
+		result = prime * result + ((docHolderName == null) ? 0 : docHolderName.hashCode());
+		result = prime * result + ((expiryDate == null) ? 0 : expiryDate.hashCode());
+		result = prime * result + ((firstIssueDate == null) ? 0 : firstIssueDate.hashCode());
+		result = prime * result + ((mobileNumber == null) ? 0 : mobileNumber.hashCode());
+		result = prime * result + ((modifiedDateTime == null) ? 0 : modifiedDateTime.hashCode());
+		result = prime * result + ((nsrId == null) ? 0 : nsrId.hashCode());
+		result = prime * result + ((panId == null) ? 0 : panId.hashCode());
+		result = prime * result + ((parentSpseGrdRelation == null) ? 0 : parentSpseGrdRelation.hashCode());
+		result = prime * result + ((passportId == null) ? 0 : passportId.hashCode());
+		result = prime * result + ((piAddress == null) ? 0 : piAddress.hashCode());
+		result = prime * result + ((piAddressCity == null) ? 0 : piAddressCity.hashCode());
+		result = prime * result + ((piAddressPin == null) ? 0 : piAddressPin.hashCode());
+		result = prime * result + ((piAddressState == null) ? 0 : piAddressState.hashCode());
+		result = prime * result + ((piAlternateMobile == null) ? 0 : piAlternateMobile.hashCode());
+		result = prime * result + ((piDocCtgryType == null) ? 0 : piDocCtgryType.hashCode());
+		result = prime * result + ((piDocType == null) ? 0 : piDocType.hashCode());
+		result = prime * result + ((piParentSpouseGuardian == null) ? 0 : piParentSpouseGuardian.hashCode());
+		result = prime * result + ((primaryMobileNumber == null) ? 0 : primaryMobileNumber.hashCode());
+		result = prime * result + ((reIssueDate == null) ? 0 : reIssueDate.hashCode());
+		result = prime * result + ((reIssueIndicator == null) ? 0 : reIssueIndicator.hashCode());
+		result = prime * result + ((referenceNumber == null) ? 0 : referenceNumber.hashCode());
+		result = prime * result + ((tenureNumber == null) ? 0 : tenureNumber.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
+		result = prime * result + ((vRegNumber == null) ? 0 : vRegNumber.hashCode());
+		result = prime * result + ((vehicleClass == null) ? 0 : vehicleClass.hashCode());
+		result = prime * result + ((vehicleClassDesc == null) ? 0 : vehicleClassDesc.hashCode());
+		result = prime * result + ((voterId == null) ? 0 : voterId.hashCode());
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof PersonalIdentityDocs))
+		if (getClass() != obj.getClass())
 			return false;
 		PersonalIdentityDocs other = (PersonalIdentityDocs) obj;
-		if (seqPiDOC == null) {
-			if (other.seqPiDOC != null)
+		if (aadharId == null) {
+			if (other.aadharId != null)
 				return false;
-		} else if (!seqPiDOC.equals(other.seqPiDOC))
+		} else if (!aadharId.equals(other.aadharId))
+			return false;
+		if (activeStatus == null) {
+			if (other.activeStatus != null)
+				return false;
+		} else if (!activeStatus.equals(other.activeStatus))
+			return false;
+		if (bloodGroup == null) {
+			if (other.bloodGroup != null)
+				return false;
+		} else if (!bloodGroup.equals(other.bloodGroup))
+			return false;
+		if (createdDateTime == null) {
+			if (other.createdDateTime != null)
+				return false;
+		} else if (!createdDateTime.equals(other.createdDateTime))
+			return false;
+		if (dateOfBirth == null) {
+			if (other.dateOfBirth != null)
+				return false;
+		} else if (!dateOfBirth.equals(other.dateOfBirth))
+			return false;
+		if (dlId == null) {
+			if (other.dlId != null)
+				return false;
+		} else if (!dlId.equals(other.dlId))
+			return false;
+		if (docHolderName == null) {
+			if (other.docHolderName != null)
+				return false;
+		} else if (!docHolderName.equals(other.docHolderName))
+			return false;
+		if (expiryDate == null) {
+			if (other.expiryDate != null)
+				return false;
+		} else if (!expiryDate.equals(other.expiryDate))
+			return false;
+		if (firstIssueDate == null) {
+			if (other.firstIssueDate != null)
+				return false;
+		} else if (!firstIssueDate.equals(other.firstIssueDate))
+			return false;
+		if (mobileNumber == null) {
+			if (other.mobileNumber != null)
+				return false;
+		} else if (!mobileNumber.equals(other.mobileNumber))
+			return false;
+		if (modifiedDateTime == null) {
+			if (other.modifiedDateTime != null)
+				return false;
+		} else if (!modifiedDateTime.equals(other.modifiedDateTime))
+			return false;
+		if (nsrId == null) {
+			if (other.nsrId != null)
+				return false;
+		} else if (!nsrId.equals(other.nsrId))
+			return false;
+		if (panId == null) {
+			if (other.panId != null)
+				return false;
+		} else if (!panId.equals(other.panId))
+			return false;
+		if (parentSpseGrdRelation == null) {
+			if (other.parentSpseGrdRelation != null)
+				return false;
+		} else if (!parentSpseGrdRelation.equals(other.parentSpseGrdRelation))
+			return false;
+		if (passportId == null) {
+			if (other.passportId != null)
+				return false;
+		} else if (!passportId.equals(other.passportId))
+			return false;
+		if (piAddress == null) {
+			if (other.piAddress != null)
+				return false;
+		} else if (!piAddress.equals(other.piAddress))
+			return false;
+		if (piAddressCity == null) {
+			if (other.piAddressCity != null)
+				return false;
+		} else if (!piAddressCity.equals(other.piAddressCity))
+			return false;
+		if (piAddressPin == null) {
+			if (other.piAddressPin != null)
+				return false;
+		} else if (!piAddressPin.equals(other.piAddressPin))
+			return false;
+		if (piAddressState == null) {
+			if (other.piAddressState != null)
+				return false;
+		} else if (!piAddressState.equals(other.piAddressState))
+			return false;
+		if (piAlternateMobile == null) {
+			if (other.piAlternateMobile != null)
+				return false;
+		} else if (!piAlternateMobile.equals(other.piAlternateMobile))
+			return false;
+		if (piDocCtgryType == null) {
+			if (other.piDocCtgryType != null)
+				return false;
+		} else if (!piDocCtgryType.equals(other.piDocCtgryType))
+			return false;
+		if (piDocType == null) {
+			if (other.piDocType != null)
+				return false;
+		} else if (!piDocType.equals(other.piDocType))
+			return false;
+		if (piParentSpouseGuardian == null) {
+			if (other.piParentSpouseGuardian != null)
+				return false;
+		} else if (!piParentSpouseGuardian.equals(other.piParentSpouseGuardian))
+			return false;
+		if (primaryMobileNumber == null) {
+			if (other.primaryMobileNumber != null)
+				return false;
+		} else if (!primaryMobileNumber.equals(other.primaryMobileNumber))
+			return false;
+		if (reIssueDate == null) {
+			if (other.reIssueDate != null)
+				return false;
+		} else if (!reIssueDate.equals(other.reIssueDate))
+			return false;
+		if (reIssueIndicator == null) {
+			if (other.reIssueIndicator != null)
+				return false;
+		} else if (!reIssueIndicator.equals(other.reIssueIndicator))
+			return false;
+		if (referenceNumber == null) {
+			if (other.referenceNumber != null)
+				return false;
+		} else if (!referenceNumber.equals(other.referenceNumber))
+			return false;
+		if (tenureNumber == null) {
+			if (other.tenureNumber != null)
+				return false;
+		} else if (!tenureNumber.equals(other.tenureNumber))
+			return false;
+		
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
+			return false;
+		if (vRegNumber == null) {
+			if (other.vRegNumber != null)
+				return false;
+		} else if (!vRegNumber.equals(other.vRegNumber))
+			return false;
+		if (vehicleClass == null) {
+			if (other.vehicleClass != null)
+				return false;
+		} else if (!vehicleClass.equals(other.vehicleClass))
+			return false;
+		if (vehicleClassDesc == null) {
+			if (other.vehicleClassDesc != null)
+				return false;
+		} else if (!vehicleClassDesc.equals(other.vehicleClassDesc))
+			return false;
+		if (voterId == null) {
+			if (other.voterId != null)
+				return false;
+		} else if (!voterId.equals(other.voterId))
 			return false;
 		return true;
 	}

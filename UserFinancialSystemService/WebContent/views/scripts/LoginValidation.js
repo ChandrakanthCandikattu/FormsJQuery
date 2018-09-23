@@ -30,8 +30,13 @@ $(document).ready(()=>{
        						},
        submitHandler: (form)=>{
     	   $.ajax({
-    		   																																																																																																				
-    	   })
+    		   		url: "/existingUser/2",
+    		   		success: (response)=>{ 
+    		   			$.each(response, (i, resp)=>{console.log(resp)});
+    		   		}
+    		   		
+    	   });
+    	   $(form).ajaxSubmit();
        }
     });
 	

@@ -113,6 +113,7 @@ CREATE TABLE personal_identity_docs (
     dl_id                  VARCHAR(20),
     nsr_id                 VARCHAR(20),
     voter_id               VARCHAR(20),
+    REFERENCE_NUMBER       varchar(15),
     v_reg_number           VARCHAR(15),
     v_class                varchar(30),
     v_class_desc           varchar(100),

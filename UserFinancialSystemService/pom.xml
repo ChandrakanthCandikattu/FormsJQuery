@@ -102,6 +102,21 @@
 		<!-- <dependency> <groupId>javax.ejb</groupId> <artifactId>ejb-api</artifactId> 
 			<version>3.0-alpha-1</version> </dependency> -->
 
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+
+
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<!-- https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4 -->
 		<dependency>

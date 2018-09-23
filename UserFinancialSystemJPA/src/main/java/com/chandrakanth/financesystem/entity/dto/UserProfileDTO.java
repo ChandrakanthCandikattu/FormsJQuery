@@ -4,7 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class UserProfileDTO {
 
-	private UserProfileDTO() {
+	public UserProfileDTO() {
 		super();
 	}
 

@@ -1,7 +1,6 @@
 package com.financesystem.controllers;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,13 +13,13 @@ import com.chandrakanth.financesystem.entity.dto.UserCredentialsDTO;
 import com.chandrakanth.financesystem.entity.dto.UserProfileDTO;
 //import com.chandrakanth.financesystem.utils.DataSourceConfiguration;
 import com.chandrakanth.financesystem.utils.DataSourceConfiguration;
-import com.financesystem.api.SubmitAPI;
 
 @Controller
 public class LoginController {
 
-	@Autowired
-	public SubmitAPI submitAPI;
+	/*
+	 * @Autowired public SubmitAPI submitAPI;
+	 */
 
 	private static final Logger LOGGER = Logger.getLogger(LoginController.class);
 
@@ -33,25 +32,24 @@ public class LoginController {
 	@GetMapping("/")
 	public String displayLogin(Model model) {
 		model.addAttribute("login", new UserCredentialsDTO());
+		model.addAttribute("userProfile", new UserProfileDTO());
 		return "Login";
 	}
 
 	@PostMapping("/req")
-	public ModelAndView returnAnotherView(@ModelAttribute("login") UserCredentialsDTO uCTO, 
-			@ModelAttribute("userProfile")UserProfileDTO userProfile, BindingResult bResult) {
+	public ModelAndView returnAnotherView(@ModelAttribute("login") UserCredentialsDTO uCTO,
+			/* @ModelAttribute("userProfile")UserProfileDTO userProfile, */BindingResult bResult) {
 
-		submitAPI.checkForLoginUsers(uCTO);
-
-		LOGGER.info("Active status " + uCTO.getActiveStatus());
-		LOGGER.info("User ID " + uCTO.getUserId());
-		LOGGER.info(new DataSourceConfiguration());
+		/* submitAPI.checkForLoginUsers(uCTO); */
 		try {
-			Thread.sleep(60000);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		LOGGER.info("Active status " + uCTO.getActiveStatus());
+		LOGGER.info("User ID " + uCTO.getUserId());
+		LOGGER.info(new DataSourceConfiguration());
 		return new ModelAndView("Login2", "uC", uCTO);
 	}
 }
